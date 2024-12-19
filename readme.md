@@ -134,6 +134,8 @@ The main.yml file in the .github/workflows directory defines the CI/CD pipeline.
 
 #### Decisions
 * **ClusterIP for MongoDB**: Simplified internal service communication within the cluster.
+* **Separate the dependency and service configurations into distinct YAML files for Spring Boot and MongoDB in 
+Kubernetes:** Deployment Flexibility: Allows independent application of configurations :MongoDB can be deployed and verified first, ensuring the database is ready before starting the Spring Boot application.
 
 #### Assumptions
 * The MongoDB pod uses a persistent volume (emptyDir) for temporary storage.
