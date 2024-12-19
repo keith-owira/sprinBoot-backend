@@ -143,3 +143,4 @@ Kubernetes:** Deployment Flexibility: Allows independent application of configur
 
 #### Challenges 
 * **Database Connectivity:** Ensured MongoDB and the Spring Boot application were correctly connected by configuring SPRING_DATA_MONGODB_URI in springboot.yaml.
+* **Port Conflict in port fowarding** To avoid port conflict ensure that the local instance of mongodb is switched off before running the image and port foward
