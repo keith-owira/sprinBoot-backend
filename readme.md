@@ -100,6 +100,8 @@ kubectl port-forward service/springboot-backend-service 8080:8080
 * Once MongoDB has been port fowarded you can access it's terminal using this command 
 ```bash
 mongo --host localhost --port 27017 
+or 
+mongosh --host localhost --port 27017
 ```
 * Once logged in the command for sample data provided above can be used to simulate data
 
@@ -127,3 +129,15 @@ The main.yml file in the .github/workflows directory defines the CI/CD pipeline.
     push: true
     tags: owira57/springboot-backend-api:latest
 ```
+
+### Decisions, Assumptions, and Challenges
+
+#### Decisions
+* **ClusterIP for MongoDB**: Simplified internal service communication within the cluster.
+
+#### Assumptions
+* The MongoDB pod uses a persistent volume (emptyDir) for temporary storage.
+* All endpoints and functionality were tested locally before containerization.
+
+#### Challenges 
+* **Database Connectivity:** Ensured MongoDB and the Spring Boot application were correctly connected by configuring SPRING_DATA_MONGODB_URI in springboot.yaml.
