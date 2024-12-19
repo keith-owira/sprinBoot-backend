@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-backend
+  labels:
+    app: springboot-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-backend
+  template:
+    metadata:
+      labels:
+        app: springboot-backend
+    spec:
+      containers:
+        - name: springboot-backend
+          image: owira57/springboot-backend-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongodb-service:27017/books
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-backend-service
+  labels:
+    app: springboot-backend
+spec:
+  type: NodePort
+  selector:
+    app: springboot-backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
